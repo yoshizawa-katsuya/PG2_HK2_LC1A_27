@@ -1,4 +1,7 @@
 #include <Novice.h>
+#include "Struct.h"
+#include "Scene.h"
+#include "Start.h"
 
 const char kWindowTitle[] = "LC1A_27_ヨシザワ_カツヤ";
 
@@ -11,6 +14,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};
 	char preKeys[256] = {0};
+
+	//シーン
+	int SceneNo = START;
+
+	Start* start = new Start;
+	
 
 	// ウィンドウの×ボタンが押されるまでループ
 	while (Novice::ProcessMessage() == 0) {
@@ -25,6 +34,33 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		/// ↓更新処理ここから
 		///
 
+		switch (SceneNo)
+		{
+		case START:
+
+			start->Update(keys, preKeys, &SceneNo);
+
+			break;
+
+		case GAME:
+
+			
+
+			break;
+
+		case CLEAR:
+
+			break;
+
+		case OVER:
+
+			break;
+
+		default:
+
+			break;
+		}
+
 		///
 		/// ↑更新処理ここまで
 		///
@@ -32,6 +68,33 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		///
 		/// ↓描画処理ここから
 		///
+
+		switch (SceneNo)
+		{
+		case START:
+
+			start->Draw();
+
+			break;
+
+		case GAME:
+
+
+
+			break;
+
+		case CLEAR:
+
+			break;
+
+		case OVER:
+
+			break;
+
+		default:
+
+			break;
+		}
 
 		///
 		/// ↑描画処理ここまで
