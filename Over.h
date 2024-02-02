@@ -1,20 +1,17 @@
 #pragma once
-#include "Player.h"
-#include "Enemy.h"
 #include "Scene.h"
 
-class Game {
+class Over {
 public:
 
-	Game();
-	~Game();
+	Over();
+	~Over();
 	void Initial();
 	void Update(char* keys, char* prekeys, int* SceneNo);
 	void Draw();
 
 private:
 
-	Player* player;
-	Enemy* enemy;
+
 
 };

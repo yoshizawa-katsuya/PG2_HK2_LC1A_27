@@ -2,6 +2,9 @@
 #include "Struct.h"
 #include "Scene.h"
 #include "Start.h"
+#include "Game.h"
+#include "Clear.h"
+#include "Over.h"
 
 const char kWindowTitle[] = "LC1A_27_ヨシザワ_カツヤ";
 
@@ -19,6 +22,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	int SceneNo = START;
 
 	Start* start = new Start;
+	Game* game = NULL;
+	Clear* clear = NULL;
+	Over* over = NULL;
 	
 
 	// ウィンドウの×ボタンが押されるまでループ
@@ -40,19 +46,48 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 			start->Update(keys, preKeys, &SceneNo);
 
+			if (SceneNo != START) {
+				delete start;
+				game = new Game;
+			}
+
 			break;
 
 		case GAME:
 
-			
+			game->Update(keys, preKeys, &SceneNo);
+
+			if (SceneNo != GAME) {
+				delete game;
+				if (SceneNo == CLEAR) {
+					clear = new Clear;
+				}
+				else if (SceneNo == OVER) {
+					over = new Over;
+				}
+			}
 
 			break;
 
 		case CLEAR:
 
+			clear->Update(keys, preKeys, &SceneNo);
+
+			if (SceneNo != CLEAR) {
+				delete clear;
+				start = new Start;	
+			}
+
 			break;
 
 		case OVER:
+
+			over->Update(keys, preKeys, &SceneNo);
+
+			if (SceneNo != OVER) {
+				delete over;
+				start = new Start;
+			}
 
 			break;
 
@@ -79,15 +114,19 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		case GAME:
 
-
+			game->Draw();
 
 			break;
 
 		case CLEAR:
 
+			clear->Draw();
+
 			break;
 
 		case OVER:
+
+			over->Draw();
 
 			break;
 

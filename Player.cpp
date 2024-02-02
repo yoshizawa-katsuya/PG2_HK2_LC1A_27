@@ -1,5 +1,6 @@
 #include <Novice.h>
 #include "Player.h"
+#include "Collision.h"
 
 Player::Player() {
 
@@ -10,6 +11,8 @@ Player::Player() {
 	velocity_ = { 0 };
 	radius_ = 20;
 	speed_ = 6;
+
+	isalive_ = 1;
 
 }
 
@@ -26,6 +29,9 @@ void Player::Initial() {
 	velocity_ = { 0 };
 	radius_ = 20;
 	speed_ = 6;
+
+	isalive_ = 1;
+
 }
 
 void Player::Update(char* keys, char* prekeys) {
@@ -43,14 +49,17 @@ void Player::Update(char* keys, char* prekeys) {
 		velocity_.x += speed_;
 	}
 
-	if (bullet_->isshot_ == 0) {
+	pos_.x += velocity_.x;
+	pos_.y += velocity_.y;
+
+	velocity_ = { 0 };
+
+	if (bullet_->Getisshot_() == 0) {
 		if (keys[DIK_SPACE] && !prekeys[DIK_SPACE]) {
-			bullet_->isshot_ = 1;
-			bullet_->pos_.x = pos_.x;
-			bullet_->pos_.y = pos_.y;
-			for (int i = 0; i < 5; i++) {
-				bullet_->prepos_[i] = bullet_->pos_;
-			}
+			bullet_->Setisshot_(1);
+			bullet_->Setpos_(pos_);
+			
+			
 		}
 	}
 
@@ -58,7 +67,25 @@ void Player::Update(char* keys, char* prekeys) {
 
 }
 
+void Player::EnemyColision(Vector2 enemy_pos, Vector2 enemy_prepos, int enemy_radius, bool enemy_isalive) {
+
+	if (enemy_isalive == 1) {
+		if (CapsuleCollision(enemy_pos, enemy_prepos, pos_, float(radius_), float(enemy_radius))) {
+
+			isalive_ = 0;
+
+		}
+
+
+	}
+
+}
+
 void Player::Draw() {
 	bullet_->Draw();
 	Novice::DrawEllipse(int(pos_.x), int((pos_.y - 720) * -1), radius_, radius_, 0.0f, BLUE, kFillModeSolid);
 }
+
+bool Player::Getisalive_() { return isalive_; }
+
+Bullet* Player::Getbullet_() { return bullet_; }
