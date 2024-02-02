@@ -10,6 +10,8 @@ Enemy::Enemy() {
 	pos_.x = 640;
 	pos_.y = 550;
 	prepos_ = pos_;
+	velocity_.x = 5;
+	velocity_.y = 0;
 	radius_ = 20;
 	hitcount_ = 0;
 	hp_ = 10;
@@ -27,6 +29,8 @@ void Enemy::Initial() {
 	pos_.x = 640;
 	pos_.y = 550;
 	prepos_ = pos_;
+	velocity_.x = 5;
+	velocity_.y = 0;
 	radius_ = 20;
 	hitcount_ = 0;
 	hp_ = 10;
@@ -40,6 +44,17 @@ void Enemy::Initial() {
 void Enemy::Update() {
 
 	prepos_ = pos_;
+
+	pos_.x += velocity_.x;
+
+	if (velocity_.x < 0 && pos_.x - radius_ < 0) {
+		pos_.x = float(radius_);
+		velocity_.x *= -1;
+	}
+	else if (velocity_.x > 0 && pos_.x + radius_ > 1280) {
+		pos_.x = float(1280 - radius_);
+		velocity_.x *= -1;
+	}
 
 	if (hitcount_ > 0) {
 		hitcount_--;

@@ -21,6 +21,7 @@ public:
 private:
 
 	Vector2 pos_;
+	Vector2 velocity_;
 	Vector2 prepos_;
 	int radius_;
 	int hitcount_;
