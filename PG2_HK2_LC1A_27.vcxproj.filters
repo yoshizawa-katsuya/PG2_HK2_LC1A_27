@@ -62,6 +62,12 @@
     <ClCompile Include="Over.cpp">
       <Filter>KamataEngine</Filter>
     </ClCompile>
+    <ClCompile Include="SceneChange.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Easing.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -145,5 +151,8 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Clear.h" />
     <ClInclude Include="Over.h" />
+    <ClInclude Include="SceneChange.h" />
+    <ClInclude Include="Easing.h" />
+    <ClInclude Include="ScreenSize.h" />
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Scene.h"
+#include "SceneChange.h"
 
 class Game {
 public:
@@ -17,4 +18,5 @@ private:
 	Player* player;
 	Enemy* enemy;
 
+	SceneChange* change;
 };

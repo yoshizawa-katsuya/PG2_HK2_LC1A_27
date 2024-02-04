@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "SceneChange.h"
 
 class Start {
 public:
@@ -12,6 +13,6 @@ public:
 
 private:
 
-
+	SceneChange* change;
 
 };

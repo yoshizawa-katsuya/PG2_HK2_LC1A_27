@@ -45,7 +45,9 @@ void Enemy::Update() {
 
 	prepos_ = pos_;
 
-	pos_.x += velocity_.x;
+	if (hitcount_ == 0){
+		pos_.x += velocity_.x;
+	}
 
 	if (velocity_.x < 0 && pos_.x - radius_ < 0) {
 		pos_.x = float(radius_);

@@ -4,6 +4,9 @@ Game::Game() {
 
 	player = new Player;
 	enemy = new Enemy;
+
+	change = new SceneChange;
+	change->Setischange_start_(1);
 }
 
 Game::~Game() {
@@ -11,6 +14,7 @@ Game::~Game() {
 	delete player;
 	delete enemy;
 
+	delete change;
 }
 
 void Game::Initial() {
@@ -18,6 +22,7 @@ void Game::Initial() {
 	player->Initial();
 	enemy->Initial();
 
+	change->Initial();
 }
 
 void Game::Update(char* keys, char* prekeys, int* SceneNo) {
@@ -44,4 +49,5 @@ void Game::Draw() {
 	player->Draw();
 	enemy->Draw();
 
+	change->End1();
 }
